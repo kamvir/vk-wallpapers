@@ -1,20 +1,46 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Blank
+    <ion-title class="ion-text-center">
+      Vk-Wallpapers
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content class="ion-padding" [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
+      <ion-title size="large">Vk-Wallpapers</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+  <div class="img-div" *ngIf="imgSrc">
+    <ion-img [src]="imgSrc" alt="Wallpaper_Image"></ion-img>
   </div>
+
+  <div class="btns-div ion-margin-top">
+    <ion-button *ngIf="!imgSrc" color="primary" expand="block" (click)="onTakePhoto(1)">
+      <ion-icon slot="start" name="camera-outline"></ion-icon>
+      Take Photo
+    </ion-button>
+    <ion-button *ngIf="!imgSrc" class="ion-margin-top" color="primary" expand="block" (click)="onTakePhoto(0)">
+      <ion-icon slot="start" name="images-outline"></ion-icon>
+      Open Gallery
+    </ion-button>
+    
+    <ion-button *ngIf="imgSrc" color="primary" expand="block" (click)="onSetWallPaper('')">
+      <ion-icon slot="start" name="copy-outline"></ion-icon>
+      Set As Wallpaper
+    </ion-button>
+    
+    <ion-button class="ion-margin-top" *ngIf="imgSrc" color="primary" expand="block" (click)="onSetWallPaper('lock')">
+      <ion-icon slot="start" name="lock-closed-outline"></ion-icon>
+      Set As Lock Screen Wallpaper
+    </ion-button>
+
+    <ion-button class="ion-margin-top" *ngIf="imgSrc" color="primary" expand="block" (click)="onClearBase64AndImageSrc()">
+      <ion-icon slot="start" name="refresh-circle-outline"></ion-icon>
+      Change Photo
+    </ion-button>
+  </div>
+
 </ion-content>
